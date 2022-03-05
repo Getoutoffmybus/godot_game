@@ -1,12 +1,9 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var velocity = Vector2()
 
+
+onready var instancedObject = preload("res://ball.tscn")
 
 func read_input():
 	velocity = Vector2()
@@ -16,6 +13,11 @@ func read_input():
 	
 	velocity.normalized()
 	velocity = move_and_slide(velocity * 200)
+	
+	if Input.is_action_just_released("space"):
+		var object = instancedObject.instance()
+		object.transform.origin = transform.origin
+		get_owner().add_child(object)
 
 func _physics_process(_delta):
 	read_input()
