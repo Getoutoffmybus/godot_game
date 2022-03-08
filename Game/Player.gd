@@ -11,12 +11,11 @@ var walk_right = false
 var walk_up = false
 var walk_down = false
 var walking = true
-
+var current_frame
 func _ready():
 	$AnimationPlayer.play("Down_Idle")
 func read_input():
 	velocity = Vector2()
-	
 	if Input.is_action_pressed("up"):
 		velocity.y -= 1
 		walk_down = false
@@ -25,7 +24,6 @@ func read_input():
 		walk_up = true
 		walking = true
 		$AnimationPlayer.play("Walk_Up")
-		
 	elif Input.is_action_pressed("down"):
 		velocity.y += 1
 		walk_up = false
@@ -53,6 +51,11 @@ func read_input():
 	else:
 		walking = false
 	
+	
+	velocity.normalized()
+	velocity = move_and_slide(velocity * 200)
+	
+func _idle():
 	if walking == false:
 		if walk_down == true:
 			$AnimationPlayer.play("Down_Idle")
@@ -62,10 +65,7 @@ func read_input():
 			$AnimationPlayer.play("Right_Idle")
 		elif walk_up == true:
 			$AnimationPlayer.play("Up_Idle")
-	print(walking)
-	velocity.normalized()
-	velocity = move_and_slide(velocity * 200)
-	
-
-func _physics_process(delta):
+			
+func _physics_process(_delta):
 	read_input()
+	_idle()
