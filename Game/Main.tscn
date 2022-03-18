@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://art/tileset/tilesetsheet.png" type="Texture" id=1]
 [ext_resource path="res://player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Enemy.gd" type="Script" id=4]
 [ext_resource path="res://Battlesceen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://in_game_menu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Inventory.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/plugin/event_bus.gd" type="Script" id=8]
+[ext_resource path="res://Apple.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Sneeuw"
@@ -581,5 +584,13 @@ current = true
 zoom = Vector2( 0.4, 0.4 )
 
 [node name="CanvasLayer2" parent="." instance=ExtResource( 6 )]
+
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="Inventory" parent="." instance=ExtResource( 7 )]
+
+[node name="Area2D" parent="." instance=ExtResource( 9 )]
+position = Vector2( 256, -53 )
 
 [connection signal="body_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D/Area2D" method="_on_Area2D_body_entered"]
