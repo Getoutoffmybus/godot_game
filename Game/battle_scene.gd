@@ -17,6 +17,7 @@ func init(_character_name):
 	print(visible)
 	$AnimationPlayer.play("fade_in")
 	
+	
 	print($AnimationPlayer.current_animation)
 	get_tree().paused = true
 	pass
@@ -30,6 +31,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		
 		$AnimationPlayer.play("fade_out")
 		$background.visible = true
+		var scene = load("res://creature.tscn")
+		var appleboi = scene.instance()
+		add_child(appleboi)
+
 		$background/Panel/Fight_button.grab_click_focus()
 		
 
