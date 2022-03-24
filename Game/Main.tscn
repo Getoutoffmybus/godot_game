@@ -565,7 +565,7 @@ hframes = 12
 vframes = 8
 frame = 13
 
-[node name="CanvasLayer" parent="." instance=ExtResource( 5 )]
+[node name="Battle_sceen" parent="." instance=ExtResource( 5 )]
 
 [node name="Gebouwen" type="TileMap" parent="."]
 z_index = 1
@@ -583,7 +583,7 @@ collision_mask = 3
 current = true
 zoom = Vector2( 0.4, 0.4 )
 
-[node name="CanvasLayer2" parent="." instance=ExtResource( 6 )]
+[node name="MENU" parent="." instance=ExtResource( 6 )]
 
 [node name="EventBus" type="Node" parent="."]
 script = ExtResource( 8 )
